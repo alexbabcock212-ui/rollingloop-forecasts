@@ -67,7 +67,7 @@ Across the season, the scoreboard shows:
 - Attention data: Wikipedia page views from the Wikimedia API.
 - Market prices: public data from Kalshi and Polymarket.
 - Weekend actuals: studio-reported figures, as published.
-- Training data for the opening-weekend model: past opening grosses and theatre counts from English Wikipedia: film articles and its lists of weekly number-one films. Where Wikipedia gives no theatre count, we entered it by hand from a published news report and kept the link to that report.
+- Training data for the opening-weekend model: past opening grosses and theatre counts from English Wikipedia: film articles and its lists of weekly number-one films. Where Wikipedia gives no theatre count, or a figure that published reports contradict, we entered it by hand from a published news report and kept the link to that report. Films that opened in a few theatres before going wide, and releases whose studio did not report grosses, are left out.
 
 We do not use scraped data from sites that do not permit it.
 
