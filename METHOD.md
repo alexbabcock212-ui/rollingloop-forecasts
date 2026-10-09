@@ -85,9 +85,9 @@ The public log uses two CSV files.
 
 | column | meaning |
 |---|---|
-| `forecast_id` | unique id, e.g. `opening_weekend-2026-11-06-<tmdb_id>-h2-ow_v0_comps` |
+| `forecast_id` | unique id, e.g. `opening_weekend-2026-11-06-<tmdb_id>-h2-ow_v0_comps_clean` |
 | `created_utc` | when the forecast was logged (ISO 8601, UTC) |
-| `model_version` | e.g. `ow_v0_comps` |
+| `model_version` | e.g. `ow_v0_comps_clean` |
 | `target` | `opening_weekend`, or a yes/no target such as `oscar_bp_nom` |
 | `tmdb_id` | TMDB film id |
 | `title` | film title |
