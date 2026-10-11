@@ -1,18 +1,18 @@
 # Method: how Rolling Loop forecasts are made, logged and scored
 
-*Draft. These rules take effect with the first published forecast on Wednesday, November 4, 2026, and will not be changed retroactively. Any future change applies only to forecasts made after the change is announced here, with its date.*
+*These rules take effect with the first published forecast on Wednesday, November 4, 2026, and will not be changed retroactively. Any future change applies only to forecasts made after the change is announced here, with its date.*
 
 Rolling Loop publishes forecasts before the outcome is known, keeps every one of them, and scores them in public. This page sets out the rules in advance so that nobody, including us, can move the goalposts later.
 
 ## 1. What we forecast
 
-- **Opening weekend box office** for every film opening in **2,000 or more US theatres**.
+- **Opening weekend box office** for every film opening in **2,000 or more theatres in the US and Canada**.
 - The number we forecast is the **Friday-to-Sunday domestic gross (US and Canada)**, in US dollars, as the industry reports it. Thursday-night previews count toward Friday.
 - Films opening on a holiday Wednesday are still forecast for their Friday-to-Sunday weekend. A five-day figure may be noted but is not scored.
 
-## 2. The slate is announced first
+## 2. Which films get a forecast
 
-Every **Monday**, before any forecast is published, we post the list of films we will forecast that week. A film on the slate gets a forecast, whatever we expect it to do. We cannot quietly skip a film we feel unsure about.
+Every film opening in **2,000 or more theatres in the US and Canada** that weekend gets a forecast, whatever we expect it to do. We do not skip a film we feel unsure about. A film is left out only if an input the model needs is missing: a theatre count from a published source, an English Wikipedia article and its page views, the film's TMDB record, or, for a sequel, the earlier film's opening. We never estimate a missing input. Withdrawals after a forecast is made are covered in section 5.
 
 ## 3. When forecasts lock
 
@@ -20,7 +20,7 @@ Every **Monday**, before any forecast is published, we post the list of films we
 - Each forecast carries a **UTC timestamp** and is written to the public forecast log at the same moment.
 - No forecast for a film is accepted once its Thursday previews have begun.
 
-We may also log earlier forecasts, 28 and 14 days before opening. They are scored the same way and shown separately; the headline scoreboard uses only the Wednesday forecast.
+We may also log earlier forecasts, 28, 14 and 7 days before opening. They are scored the same way and shown separately; the headline scoreboard uses only the Wednesday forecast.
 
 ## 4. What a forecast contains
 
@@ -38,6 +38,7 @@ For yes/no questions, such as whether a film will be nominated for an award, a f
 - Rows are **never edited or deleted**.
 - A correction is a **new row** marked `supersedes <id>`. The original stays visible, and **only the original forecast is scored**.
 - If a film's release moves or it drops below 2,000 theatres after we forecast it, we add a row marking the forecast **withdrawn**, with the reason. Withdrawn forecasts stay in the log but are not scored.
+- Before a film's lock, a forecast can be withdrawn for any reason. The withdrawal and its reason stay in the public log. After the lock, a forecast can only be withdrawn if the release moves or the film opens in fewer than 2,000 theatres, with a published source.
 
 ## 6. What we score against
 
@@ -57,7 +58,7 @@ Across the season, the scoreboard shows:
 
 - **Median P50 error** for all scored forecasts.
 - **Range hit rate**, which should be close to 80%. Much higher means our ranges are too wide; much lower means we are overconfident.
-- **Comparisons**: where a prediction market (Kalshi or Polymarket) lists the same opening, we record its implied estimate from the market snapshot taken the same morning, before our lock, and score it the same way. When a newer model version goes live, the older version keeps running alongside it so the two can be compared on the same films.
+- **Comparisons**: where a prediction market (Kalshi or Polymarket) lists the same opening, the This Weekend page shows the market's implied median beside our forecast, from the latest complete market snapshot on or before the lock day. When a newer model version goes live, the older version keeps running alongside it so the two can be compared on the same films.
 
 **Every forecast is scored, including the misses.** We do not remove or hide forecasts that went badly.
 
