@@ -58,7 +58,7 @@ Across the season, the scoreboard shows:
 
 - **Median P50 error** for all scored forecasts.
 - **Range hit rate**, which should be close to 80%. Much higher means our ranges are too wide; much lower means we are overconfident.
-- **Comparisons**: where a prediction market (Kalshi or Polymarket) lists the same opening, the This Weekend page shows the market's implied median beside our forecast, from the latest complete market snapshot on or before the lock day. When a newer model version goes live, the older version keeps running alongside it so the two can be compared on the same films.
+- **Comparisons**: where a prediction market (Kalshi or Polymarket) lists the same opening, the This Weekend page shows the market's implied median beside our forecast, from the latest complete market snapshot taken before the lock day. When a newer model version goes live, the older version keeps running alongside it so the two can be compared on the same films.
 
 **Every forecast is scored, including the misses.** We do not remove or hide forecasts that went badly.
 
@@ -81,6 +81,8 @@ We do not use scraped data from sites that do not permit it.
 ## 10. File formats
 
 The public log uses two CSV files.
+
+The public, append-only copy of `forecasts.csv` and `scores.csv` is at https://github.com/alexbabcock212-ui/rollingloop-forecasts, and its commit history shows when each row became public.
 
 **`forecasts.csv`** (one row per forecast; append-only)
 
