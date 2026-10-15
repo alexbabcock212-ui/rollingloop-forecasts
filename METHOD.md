@@ -12,7 +12,7 @@ Rolling Loop publishes forecasts before the outcome is known, keeps every one of
 
 ## 2. Which films get a forecast
 
-Every film opening in **2,000 or more theatres in the US and Canada** that weekend gets a forecast, whatever we expect it to do. We do not skip a film we feel unsure about. A film is left out only if an input the model needs is missing: a theatre count from a published source, an English Wikipedia article and its page views, the film's TMDB record, or, for a sequel, the earlier film's opening. We never estimate a missing input. Withdrawals after a forecast is made are covered in section 5.
+Every film opening in **2,000 or more theatres in the US and Canada** that weekend gets a forecast, whatever we expect it to do. We do not skip a film we feel unsure about. A film is left out only if an input the model needs is missing: a theatre count from a published source, an English Wikipedia article and its page views, the film's TMDB record, or, for a sequel, the earlier film's opening. We never estimate a missing input. The 2,000-theatre cut is applied to the theatre count we enter when we make the forecast, taken from a published source, with a link to it stored in the forecast. A film counted under 2,000 theatres at that point gets no forecast, and once the lock has passed we do not add one if the count turns out higher. Withdrawals after a forecast is made are covered in section 5.
 
 ## 3. When forecasts lock
 
