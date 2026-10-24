@@ -20,7 +20,7 @@ Every film opening in **2,000 or more theatres in the US and Canada** that weeke
 - Each forecast carries a **UTC timestamp** and is written to the public forecast log at the same moment.
 - No forecast for a film is accepted once its Thursday previews have begun.
 
-We may also log earlier forecasts, 28, 14 and 7 days before opening. They are scored the same way and shown separately; the headline scoreboard uses only the Wednesday forecast.
+We may also log earlier forecasts, 28 or more, 14 to 27, or 4 to 13 days before the opening Friday. They are scored the same way and shown separately; the headline scoreboard uses only the forecast logged three days or fewer before the opening Friday, which is the Wednesday forecast (the Tuesday forecast for a Wednesday opener).
 
 ## 4. What a forecast contains
 
@@ -38,13 +38,13 @@ For yes/no questions, such as whether a film will be nominated for an award, a f
 - Rows are **never edited or deleted**.
 - A correction is a **new row** marked `supersedes <id>`. The original stays visible, and **only the original forecast is scored**.
 - If a film's release moves or it drops below 2,000 theatres after we forecast it, we add a row marking the forecast **withdrawn**, with the reason. Withdrawn forecasts stay in the log but are not scored.
-- Before a film's lock, a forecast can be withdrawn for any reason. The withdrawal and its reason stay in the public log. After the lock, a forecast can only be withdrawn if the release moves or the film opens in fewer than 2,000 theatres, with a published source.
+- Before a film's lock, a forecast can be withdrawn for any reason. The withdrawal and its reason stay in the public log. After the lock, a forecast can only be withdrawn if the release moves or the film opens in fewer than 2,000 theatres, with a published source. Once any forecast for a film's weekend has been scored, none of that film's forecasts can be withdrawn, for any reason; a scored miss stays on the scoreboard.
 
 ## 6. What we score against
 
 - The **studio-reported weekend actual published on Monday**, not Sunday's estimate.
 - Each actual is logged with its source and the time we recorded it.
-- If a studio later revises the Monday figure, we keep the Monday figure for scoring and note the revision.
+- If a studio later revises the Monday figure, we keep the Monday figure for scoring.
 
 ## 7. How we score
 
@@ -58,7 +58,7 @@ Across the season, the scoreboard shows:
 
 - **Median P50 error** for all scored forecasts.
 - **Range hit rate**, which should be close to 80%. Much higher means our ranges are too wide; much lower means we are overconfident.
-- **Comparisons**: where a prediction market (Kalshi or Polymarket) lists the same opening, the This Weekend page shows the market's implied median beside our forecast, from the latest complete market snapshot taken before the lock day. When a newer model version goes live, the older version keeps running alongside it so the two can be compared on the same films.
+- **Comparisons**: where we have matched a prediction market (Kalshi or Polymarket) to the opening, the This Weekend page shows the market's implied median beside our forecast, from the latest complete market snapshot taken before the lock day. When a newer model version goes live, the older version keeps running alongside it so the two can be compared on the same films.
 
 **Every forecast is scored, including the misses.** We do not remove or hide forecasts that went badly.
 
