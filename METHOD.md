@@ -22,6 +22,14 @@ Every film opening in **2,000 or more theatres in the US and Canada** that weeke
 
 We may also log earlier forecasts, 28 or more, 14 to 27, or 4 to 13 days before the opening Friday. They are scored the same way and shown separately; the headline scoreboard uses only the forecast logged three days or fewer before the opening Friday, which is the Wednesday forecast (the Tuesday forecast for a Wednesday opener).
 
+**Change, November 4, 2026** (applies to forecasts made from November 5, 2026; no forecast had been published before it):
+
+- The lock moves to **12:00 p.m. Eastern on the day before the film opens**: Thursday for a Friday opener, Wednesday for a Thursday opener, and Tuesday for a Wednesday opener. Each film's forecast is published by its own lock, and the forecast and withdrawal rules above that refer to the lock use this time.
+- The opening day is the film's US release date on TMDB. Where TMDB's date is wrong, we use the date from a published source and store a link to it in the forecast. A date set this way moves only the lock, never a model input.
+- The model's inputs do not move. Page views are still counted up to the Tuesday before the opening Friday (the Monday when TMDB lists the film as opening on the Wednesday), as in the data the model was trained on, and no other input depends on the lock.
+- The headline scoreboard still uses only the forecast logged three days or fewer before the opening Friday, which is now the forecast made by the film's lock.
+- The market comparison in section 7 uses the latest complete market snapshot taken before the day of this lock.
+
 ## 4. What a forecast contains
 
 - **P50**: our central estimate. The actual should land above it half the time and below it half the time.
