@@ -80,6 +80,9 @@ Across the season, the scoreboard shows:
 
 We do not use scraped data from sites that do not permit it.
 
+**Change, November 5, 2026** (adds a backtest result; no rule changes): We tested the opening-weekend model walk-forward: each month of 2018–19 and 2022–25 was forecast by a model trained only on films that opened before that month (2020–21 are not in the data). On the 442 films that opened in 2,000 or more theatres, the median miss was 31.6%, against 41.7% for the comps benchmark, and 80% of actuals landed inside the 80% range.
+<!-- source: docs/horizon-backtest.md, results table row 1 (lock week) -->
+
 ## 9. Conflicts of interest
 
 - **We do not trade** on any prediction market for a film or award we forecast.
