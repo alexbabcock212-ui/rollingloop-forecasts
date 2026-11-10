@@ -83,6 +83,9 @@ We do not use scraped data from sites that do not permit it.
 **Change, November 5, 2026** (adds a backtest result; no rule changes): We tested the opening-weekend model walk-forward: each month of 2018–19 and 2022–25 was forecast by a model trained only on films that opened before that month (2020–21 are not in the data). On the 442 films that opened in 2,000 or more theatres, the median miss was 31.6%, against 41.7% for the comps benchmark, and 80% of actuals landed inside the 80% range.
 <!-- source: docs/horizon-backtest.md, results table row 1 (lock week) -->
 
+**Change, November 9, 2026** (applies to forecasts made from November 10, 2026; no rule changes): We corrected the opening-weekend model's training data and refit the model. A hand check of flagged films against published reports changed 17 opening grosses and 3 theatre counts and added 43 films that opened in 600 to 1,999 theatres, so the training file went from 706 films to 749. On the same walk-forward test, the median miss on the 442 films that opened in 2,000 or more theatres went from 31.6% to 31.2%, against 41.3% for the comps benchmark (41.7% before), and 82% of actuals landed inside the 80% range (80% before). The model keeps its name, `ow_v1_ridge_wiki_clean`. Forecasts logged before November 10, 2026 came from the earlier fit and are not changed. The corrections and the link to each source are listed in `research/task113b/overrides.csv`.
+<!-- source: docs/backtest-v1-refit.md, "Before and after" table; models/ow_v1_ridge_wiki_clean.json fit_date -->
+
 ## 9. Conflicts of interest
 
 - **We do not trade** on any prediction market for a film or award we forecast.
