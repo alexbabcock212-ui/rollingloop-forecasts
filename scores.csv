@@ -1,1 +1,5 @@
 forecast_id,actual_usd,outcome,actual_source,actual_logged_utc,p50_error_pct,in_range,brier,scored_utc
+opening_weekend-2026-11-06-1117898-h1-ow_v0_comps_clean,20002705,,https://www.the-numbers.com/movie/Cat-in-the-Hat-The-(2026),2026-11-10T02:24:21Z,23.66,true,,2026-11-10T02:29:02Z
+opening_weekend-2026-11-06-1117898-h1-ow_v1_ridge_wiki_clean,20002705,,https://www.the-numbers.com/movie/Cat-in-the-Hat-The-(2026),2026-11-10T02:24:21Z,-7.92,true,,2026-11-10T02:29:02Z
+opening_weekend-2026-11-06-1697911-h1-ow_v0_comps_clean,9421843,,https://www.the-numbers.com/movie/Drummer-Boy-(2026),2026-11-10T02:24:21Z,-6.30,true,,2026-11-10T02:29:02Z
+opening_weekend-2026-11-06-1697911-h1-ow_v1_ridge_wiki_clean,9421843,,https://www.the-numbers.com/movie/Drummer-Boy-(2026),2026-11-10T02:24:21Z,-37.39,true,,2026-11-10T02:29:02Z
