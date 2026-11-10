@@ -96,6 +96,9 @@ We do not use scraped data from sites that do not permit it.
 **Change, November 9, 2026** (applies to forecasts made from November 10, 2026; no rule changes): We corrected the opening-weekend model's training data and refit the model. A hand check of flagged films against published reports changed 17 opening grosses and 3 theatre counts and added 43 films that opened in 600 to 1,999 theatres, so the training file went from 706 films to 749. On the same walk-forward test, the median miss on the 442 films that opened in 2,000 or more theatres went from 31.6% to 31.2%, against 41.3% for the comps benchmark (41.7% before), and 82% of actuals landed inside the 80% range (80% before). The model keeps its name, `ow_v1_ridge_wiki_clean`. Forecasts logged before November 10, 2026 came from the earlier fit and are not changed. The corrections and the link to each source are listed in `research/task113b/overrides.csv`.
 <!-- source: docs/backtest-v1-refit.md, "Before and after" table; models/ow_v1_ridge_wiki_clean.json fit_date -->
 
+**Change, November 9, 2026** (applies to weekend actuals logged from November 9, 2026; no change to how forecasts are made): A weekend actual is entered by hand from a page that publishes the studio-reported figure, and the link to that page is stored with the actual. That page can be a trade report or a box-office site's film page, such as The Numbers or Box Office Mojo. We never collect actuals or other data from these sites by automated means.
+<!-- source: forecasts/inputs/README.md (Monday actuals); pipeline/score.py (actual_source) -->
+
 ## 9. Conflicts of interest
 
 - **We do not trade** on any prediction market for a film or award we forecast.
