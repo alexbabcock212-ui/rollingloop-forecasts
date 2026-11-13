@@ -40,6 +40,30 @@ We may also log earlier forecasts, 28 or more, 14 to 27, or 4 to 13 days before 
 - The headline scoreboard still uses only the forecast logged three days or fewer before the opening Friday, which is now the forecast made by the film's lock.
 - The market comparison in section 7 uses the latest complete market snapshot taken before the day of this lock.
 
+**Change, November 12, 2026** (applies to early forecasts made from Wednesday, November 18, 2026; adds early opening-weekend forecasts 14 to 18 days before the opening Friday; lock-week forecasts and the headline scoreboard do not change):
+
+- **What it is.** We also log a forecast of the same Friday-to-Sunday figure 14 to 18 days before the opening Friday. It is logged as `ow_t14_ridge_wiki_clean`. It is the same kind of ridge model as `ow_v1_ridge_wiki_clean`, refitted on the same training file without the theatre-count and competition inputs, which are not known that early. We apply no bias correction. No comps benchmark is logged beside it, because the benchmark needs a theatre count.
+- **Which films.** A film gets an early forecast only if all of these hold on the day we make it. TMDB lists a US theatrical release (type 2 or 3) on the opening Friday, or on the Wednesday or Thursday before it. Where TMDB's date is wrong, we use a date from a published source with a stored link, as in the November 4 change. The film has an English Wikipedia article with at least 1,000 page views in the 14 days ending the day before the forecast. TMDB gives its genres, runtime and original language. Its distributor is known (next point). For a sequel, the earlier film's opening is known. No theatre count is needed, and no theatre cut applies at this horizon. A film missing any of these gets no early forecast, and we never estimate the input. A missing US rating is allowed, as in lock-week forecasts: the model treats it as no rating.
+- **Distributor.** We take it from Wikidata ("distributed by"). We use it only if Wikidata lists exactly one distributor and the model's training data names that company. Otherwise the film gets no early forecast.
+- **Page views.** They are counted up to the day before the forecast is made, not up to the Tuesday before the opening. The model was refitted on windows that end that day. If that day's page views are not published yet, the film gets no early forecast.
+- **The 1,000-view cut.** In the training file, 95% of the films that opened in 2,000 or more theatres pass it. The file has no film under 600 theatres, so it cannot show how many small releases also pass.
+- **The backtest.** We tested each horizon on the walk-forward test used above (each month forecast by a model trained on earlier months, from 2018) and the current training file. The table covers the 442 films that opened in 2,000 or more theatres. Bias is the median of forecast ÷ actual − 1. Range width is the median of P90 ÷ P10. Early rows are the model without a theatre feature. T-28 and T-7 are shown for comparison only; early forecasts are made 14 to 18 days out.
+
+| Horizon | Films | Median miss | Within 30% | 80% range hit | Range width | Bias |
+|---|---|---|---|---|---|---|
+| Lock week (`ow_v1_ridge_wiki_clean`) | 442 | 31.2% | 47% | 82% | 3.8x | +3.3% |
+| T-28 | 442 | 41.0% | 35% | 81% | 6.9x | −20.2% |
+| T-16 | 442 | 40.4% | 38% | 81% | 6.3x | −17.0% |
+| T-14 | 442 | 40.6% | 39% | 83% | 6.4x | −15.8% |
+| T-7 | 442 | 40.1% | 38% | 81% | 6.2x | −13.7% |
+
+- **Against the comps benchmark.** The comps benchmark, given a typical theatre count for the distributor, missed by 52.0% at T-16 and 52.6% at T-14 on the same films. At lock week it missed by 41.3%. The early model missed by less than the benchmark at every horizon tested.
+- **Known limits.** An early forecast is less accurate than a lock-week forecast. The median miss at T-16 is 40.4%, against 31.2% at lock week, and the 80% ranges are about 1.7 times as wide. Early forecasts run low: the median is 17% below the actual at T-16. The shortfall is concentrated in forecasts under $20M, where the median is 21% to 25% low. In forecasts of $20M or more it is 5% to 7%. We tested four bias corrections walk-forward. Fitted on 2,000-theatre openers, none met the rule we set in advance (an 80% hit between 78% and 84% overall, and at least 70% in every forecast-size group of 30 or more films). One met it when fitted on every opener, but left the bias at −18%. None is used.
+- **Scoring.** Early forecasts are scored by sections 6 and 7 and kept separately from the headline in the scoreboard data. The model's name marks them. They are not part of the limited-release table.
+- **Withdrawals.** If a film with an early forecast opens in fewer than 2,000 theatres, we withdraw the forecast under section 5, with a published source for the count. We add the withdrawal row by hand. A film that also has a limited-release forecast is different. Its forecasts, early ones included, can be withdrawn after the lock only if the release moves or it opens in fewer than 600 theatres. Its early forecast then stays and is scored with the other early forecasts. Early accuracy therefore covers mostly films that opened in 2,000 or more theatres, like the backtest above.
+- **One original per film.** A film gets one original early forecast per weekend. A correction is a new row marked `supersedes <id>`, as in section 5, and only the original is scored.
+<!-- source: docs/horizon-backtest.md ("T-16 for the newsletter", "By film size", "Slate cut", "Early-forecast correction"; current-data rows from pipeline/ow_horizons.py output); models/ow_t14_ridge_wiki_clean.json; pipeline/forecast_early.py (EARLY_MIN_VIEWS, EARLY_MAX_HORIZON, SLATE_DAYS, resolve_distributor, known_inputs, window_dates); pipeline/forecast_ow.py (us_release_from, opening_override, previous_instalment, BUCKETS, log_rows); pipeline/score.py (early_horizons, headline, row_universe); pipeline/withdraw.py (is_limited_film, POST_LOCK_REASONS); .github/workflows/forecast-early.yml -->
+
 ## 4. What a forecast contains
 
 - **P50**: our central estimate. The actual should land above it half the time and below it half the time.
