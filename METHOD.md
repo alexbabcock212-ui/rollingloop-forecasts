@@ -24,6 +24,8 @@ Every film opening in **2,000 or more theatres in the US and Canada** that weeke
 - **Withdrawals.** After the lock, a limited-release forecast can be withdrawn only if the release moves or the film opens in fewer than 600 theatres, with a published source. A limited-release forecast whose film opens in 2,000 or more theatres is kept and scored in the limited-release table. A wide forecast whose film drops below 2,000 theatres is still withdrawn under section 5; it is not rescored as a limited release.
 <!-- source: docs/backtest-limited.md; models/ow_lim_v1_ridge_wiki_clean.json (range_scale_k, fit_date); pipeline/forecast_ow.py (LIMITED_MIN, LIMITED_FROM, universe, log_rows); pipeline/withdraw.py; pipeline/score.py (scoreboard "limited") -->
 
+**Change, November 16, 2026** (no change to how forecasts are made): For a film listed for a weekend that has no published theatre count yet, the site may show a ballpark range of theatres, labelled as an estimate. It comes from a separate model, `th_v1` (`pipeline/build_th_est.py`), trained on the theatre counts of past openings; its walk-forward test is in `docs/backtest-theatres.md`. The ballpark is never a forecast input, never decides the 2,000- or 600-theatre cut, and is never written to the forecast log. It disappears once a published count is entered. The rule above that we never estimate a missing input is unchanged.
+
 ## 3. When forecasts lock
 
 - Forecasts are published by **12:00 p.m. Eastern on the Wednesday** before opening (Tuesday for Wednesday openers).
