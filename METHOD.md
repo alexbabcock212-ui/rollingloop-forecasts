@@ -145,6 +145,22 @@ We do not use scraped data from sites that do not permit it.
 **Change, November 9, 2026** (applies to weekend actuals logged from November 9, 2026; no change to how forecasts are made): A weekend actual is entered by hand from a page that publishes the studio-reported figure, and the link to that page is stored with the actual. That page can be a trade report or a box-office site's film page, such as The Numbers or Box Office Mojo. We never collect actuals or other data from these sites by automated means.
 <!-- source: forecasts/inputs/README.md (Monday actuals); pipeline/score.py (actual_source) -->
 
+**Change, November 23, 2026, v1 decision** (no rule changes; how forecasts are made does not change): We are keeping `ow_v1_ridge_wiki_clean` as the published opening-weekend model. The plan set before launch was that it would replace the comps benchmark only if it beat it in the backtest, and it did in every year tested. The comps benchmark, `ow_v0_comps_clean`, stays logged beside each lock-week forecast and is scored the same way, so the two can be compared in public. These are the year-by-year results of the walk-forward test described in the November 5 and November 9 (model refit) notes above, for the 442 films that opened in 2,000 or more theatres:
+
+| Year | Films | Median miss, model | Median miss, comps benchmark | Actuals inside the model's 80% range |
+| --- | --- | --- | --- | --- |
+| 2018 | 82 | 28.4% | 37.3% | 84% |
+| 2019 | 93 | 30.8% | 39.5% | 83% |
+| 2022 | 49 | 35.9% | 51.5% | 78% |
+| 2023 | 68 | 35.5% | 51.8% | 82% |
+| 2024 | 79 | 29.6% | 39.2% | 82% |
+| 2025 | 71 | 30.4% | 38.9% | 79% |
+| All | 442 | 31.2% | 41.3% | 82% |
+
+- **Known weakness.** The model under-forecasts the biggest breakouts. On the 50 films that opened above $75 million, the median forecast was 37% below the actual, and 70% of actuals landed inside the 80% range. Grouped by the size of the forecast instead, it is close to unbiased: on the 31 forecasts of $75 million or more, the median forecast was 4% below the actual, and 97% of actuals landed inside the range.
+- **Live results so far.** As of November 17, 2026, four lock-week forecasts had been scored, for the weekends of November 6 and 13. The median miss was 18.0% for the model against 15.0% for the comps benchmark, and all four actuals landed inside both 80% ranges. All four of the model's forecasts were below the actual. Four films are too few to compare the two models. The scoreboard has the latest results.
+<!-- source: decision rule docs/phase1.md ("v1 replaces it only after it beats v0 in the backtest"); year table docs/backtest-v1-refit.md "By year" (after columns), recomputed 2026-11-23 from rolling-loop-data clean/backtest_v1_clean.csv with pipeline/ow_model.py score() (2,000+ theatres, category regular); weakness docs/backtest-by-size.md 2,000+ tables (Actual $75M+, Forecast $75M+); live results forecasts/scores.csv rows scored 2026-11-10 and 2026-11-17, data/public/scoreboard.json headline (as_of 2026-11-17); benchmark pipeline/forecast_ow.py log_rows, pipeline/score.py -->
+
 ## 9. Conflicts of interest
 
 - **We do not trade** on any prediction market for a film or award we forecast.
