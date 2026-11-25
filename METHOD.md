@@ -161,6 +161,17 @@ We do not use scraped data from sites that do not permit it.
 - **Live results so far.** As of November 17, 2026, four lock-week forecasts had been scored, for the weekends of November 6 and 13. The median miss was 18.0% for the model against 15.0% for the comps benchmark, and all four actuals landed inside both 80% ranges. All four of the model's forecasts were below the actual. Four films are too few to compare the two models. The scoreboard has the latest results.
 <!-- source: decision rule docs/phase1.md ("v1 replaces it only after it beats v0 in the backtest"); year table docs/backtest-v1-refit.md "By year" (after columns), recomputed 2026-11-23 from rolling-loop-data clean/backtest_v1_clean.csv with pipeline/ow_model.py score() (2,000+ theatres, category regular); weakness docs/backtest-by-size.md 2,000+ tables (Actual $75M+, Forecast $75M+); live results forecasts/scores.csv rows scored 2026-11-10 and 2026-11-17, data/public/scoreboard.json headline (as_of 2026-11-17); benchmark pipeline/forecast_ow.py log_rows, pipeline/score.py -->
 
+**Change, December 8, 2026, shadow model** (applies to forecasts for films opening from Friday, December 11, 2026; the published model and the headline scoreboard do not change): Beside each lock-week forecast for a film in 2,000 or more theatres, we also log a forecast from a test model, `ow_v2_ef_ridge_wiki_clean`. It is not the published forecast and is not shown on the weekend or film pages. It is scored the same way and listed by model on the scoreboard. It changes `ow_v1_ridge_wiki_clean` in two ways:
+
+- **Big films.** A film entered at 3,800 or more theatres is forecast by a ridge model of the same kind. That model is trained only on the 165 training films that opened in 3,800 or more theatres. Other films keep v1's forecast.
+- **Recent misses.** The forecast is then moved by half the median miss, on the log scale, of the 20 most recent films in 2,000 or more theatres that opened at least 7 days before the film's Friday.
+    - Their actuals are entered by hand, as in the November 9 actuals note.
+    - For films up to November 20, 2026, the misses come from a test set of 2026 openings built after the fact. After that, they come from our own logged lock-week forecasts.
+    - If an actual in that window is missing, no test-model forecast is logged for that weekend's films.
+- **Why.** On 65 films that opened in 2,000 or more theatres in 2026, up to November 20, v1 had not been trained on any of them. Its median miss was 39.6%, and its median forecast was 31.7% below the actual. The test model's figures were 33.4% and 11.0% below. On the walk-forward test it matched v1 (31.2%). These 2026 films also helped choose it from 11 candidates, so its 2026 figures are partly in-sample. The logged forecasts are the real test. The tests are in `docs/backtest-big-films.md`.
+- Any switch of the published model will be set out in its own dated note before it applies.
+<!-- source: model models/ow_v2_ef_ridge_wiki_clean.json (built by pipeline/build_ow_ef.py: big n_train 165, check block n 65 / median miss 33.4% / bias -11.0%); v1 2026 figures (n 65, 39.6%, bias -31.7%), walk-forward 31.2% and "11 candidates" from docs/backtest-big-films.md, Round 2; logging pipeline/forecast_ow.py (SHADOW_MODEL, SHADOW_FROM, shadow_drift, add_shadow); actuals data/curated/ow_actuals.csv; scoring pipeline/score.py (role "other", by_model) -->
+
 ## 9. Conflicts of interest
 
 - **We do not trade** on any prediction market for a film or award we forecast.
